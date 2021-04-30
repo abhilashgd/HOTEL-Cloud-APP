@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Hotel Cloud</title>
+<link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<h1>Design your Meal!</h1>
+<img th:src="@{/images/MealCloud.png}"/>
+<form method="POST" th:object="${design}">
+<div th:if="${#fields.hasErrors()}">
+<span class="validationError">
+Please correct the problems below and resubmit.
+</span>
+</div>
+<div class="grid">
+<div class="ingredient-group" id="sides">
+<h3>Designate your sides:</h3>
+<div th:each="ingredient : ${SIDES}">
+<input name="ingredients" type="checkbox" th:value="${ingredient.id}"
+/>
+<span th:text="${ingredient.name}">INGREDIENT</span><br/>
+</div>
+</div>
+<div class="ingredient-group" id="mains">
+<h3>Pick your Main Dish:</h3>
+<div th:each="ingredient : ${MAIN}">
+<input name="ingredients" type="checkbox" th:value="${ingredient.id}"
+/>
+<span th:text="${ingredient.name}">INGREDIENT</span><br/>
+</div>
+</div>
+<div class="ingredient-group" id="addons">
+<h3>Choose your ADDONS:</h3>
+<div th:each="ingredient : ${ADDONS}">
+<input name="ingredients" type="checkbox" th:value="${ingredient.id}"
+/>
+<span th:text="${ingredient.name}">INGREDIENT</span><br/>
+</div>
+</div>
+<div class="ingredient-group" id="starters">
+<h3>Determine your starters:</h3>
+<div th:each="ingredient : ${STARTERS}">
+<input name="ingredients" type="checkbox" th:value="${ingredient.id}"
+/>
+<span th:text="${ingredient.name}">INGREDIENT</span><br/>
+</div>
+</div>
+<div class="ingredient-group" id="chats">
+<h3>Select your CHATS:</h3>
+<div th:each="ingredient : ${CHATS}">
+<input name="ingredients" type="checkbox" th:value="${ingredient.id}"
+/>
+<span th:text="${ingredient.name}">INGREDIENT</span><br/>
+</div>
+</div>
+</div>
+<div>
+<h3>Name your Meal creation:</h3>
+<input type="text" th:field="*{name}"/>
+<span class="validationError"
+            th:if="${#fields.hasErrors('name')}" 
+            th:errors="*{name}">Name Error</span>
+
+<br/>
+<button>Submit your Meal</button>
+</div>
+</form>
+</body>
+</html>
